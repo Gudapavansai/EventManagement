@@ -17,7 +17,7 @@ const EventDetails = () => {
     useEffect(() => {
         const fetchEvent = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/events/${id}`);
+                const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/events/${id}`);
                 setEvent(data);
             } catch (err) {
                 setError('Event not found');
@@ -44,7 +44,7 @@ const EventDetails = () => {
                             Authorization: `Bearer ${user.token}`,
                         },
                     };
-                    const { data } = await axios.get('http://localhost:5000/api/events/mine', config);
+                    const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/events/mine`, config);
                     const registered = data.find(reg => reg.event._id === id || reg.event === id);
                     if (registered) setIsRegistered(true);
                 } catch (err) {
@@ -71,7 +71,7 @@ const EventDetails = () => {
                     Authorization: `Bearer ${user.token}`,
                 },
             };
-            await axios.post(`http://localhost:5000/api/events/${id}/register`, {}, config);
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/events/${id}/register`, {}, config);
             setRegistrationStatus('success');
             setIsRegistered(true);
         } catch (err) {
@@ -90,7 +90,7 @@ const EventDetails = () => {
             const config = {
                 headers: { Authorization: `Bearer ${user.token}` },
             };
-            await axios.delete(`http://localhost:5000/api/events/${id}/register`, config);
+            await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/events/${id}/register`, config);
             setIsRegistered(false);
             setRegistrationStatus(null);
             alert("Registration cancelled successfully.");

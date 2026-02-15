@@ -16,7 +16,7 @@ const Dashboard = () => {
                     Authorization: `Bearer ${user.token}`,
                 },
             };
-            const { data } = await axios.get('http://localhost:5000/api/events/mine', config);
+            const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/events/mine`, config);
             setEvents(data);
         } catch (error) {
             console.error("Error fetching my events:", error);
@@ -40,7 +40,7 @@ const Dashboard = () => {
                     Authorization: `Bearer ${user.token}`,
                 },
             };
-            await axios.delete(`http://localhost:5000/api/events/${eventId}/register`, config);
+            await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/events/${eventId}/register`, config);
             // Refresh list
             fetchMyEvents();
         } catch (error) {

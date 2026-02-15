@@ -27,7 +27,7 @@ const Home = () => {
                 if (category) params.category = category;
                 if (location) params.location = location;
 
-                const { data } = await axios.get('http://localhost:5000/api/events', { params });
+                const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/events`, { params });
                 setEvents(data);
             } catch (err) {
                 console.error("Error fetching events:", err);
