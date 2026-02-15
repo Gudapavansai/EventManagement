@@ -1,0 +1,20 @@
+{
+    "name": "bellcrop-event-management",
+    "version": "1.0.0",
+    "description": "Full stack event management application",
+    "scripts": {
+        "install-client": "cd client && npm install",
+        "build-client": "cd client && npm run build",
+        "install-server": "cd server && npm install",
+        "build": "npm run install-client && npm run install-server && npm run build-client",
+        "start": "node server/server.js",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "server": "cd server && npm run dev",
+        "client": "cd client && npm run dev"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    },
+    "author": "",
+    "license": "ISC"
+}

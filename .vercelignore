@@ -1,0 +1,6 @@
+.env
+.env.production
+.env.local
+node_modules
+.git
+.DS_Store
