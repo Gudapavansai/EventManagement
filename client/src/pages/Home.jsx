@@ -28,7 +28,13 @@ const Home = () => {
                 if (location) params.location = location;
 
                 const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/events`, { params });
-                setEvents(data);
+                
+                if (Array.isArray(data)) {
+                    setEvents(data);
+                } else {
+                    console.error("API Error: Expected array but got", data);
+                    setError('Received invalid data from server. Please check backend connection.');
+                }
             } catch (err) {
                 console.error("Error fetching events:", err);
                 setError('Failed to load events. Please ensure the backend server is running and connected to MongoDB.');
